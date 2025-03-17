@@ -1,5 +1,4 @@
-<h1 align="center">ỨNG DỤNG MÃ QR TRONG 
-HỆ THỐNG ĐIỂM DANH SINH VIÊN </h1>
+<h1 align="center">HỆ THỐNG NHÀ THÔNG MINH</h1>
 
 <div align="center">
 
@@ -14,20 +13,20 @@ HỆ THỐNG ĐIỂM DANH SINH VIÊN </h1>
 
 </div>
 
-<h2 align="center">Hệ thống điểm danh sinh viên bằng mã QR</h2>
+<h2 align="center">Giới thiệu hệ thống</h2>
 
 <p align="left">
-  Hệ thống điểm danh sinh viên bằng mã QR là một dự án tích hợp giữa phần cứng (Arduino) và phần mềm (Python) nhằm tự động hóa quá trình điểm danh. Dự án sử dụng mã QR để cho phép sinh viên điểm danh, đồng thời kết hợp với thông báo qua LED, còi và giọng nói để phản hồi kết quả điểm danh. Dữ liệu điểm danh được lưu trữ trong MongoDB và quản lý qua giao diện người dùng được xây dựng bằng Tkinter.
+  Hệ thống nhà thông minh giúp tự động hóa các thiết bị trong nhà, nâng cao sự tiện lợi và an toàn cho người dùng. Dự án kết hợp giữa phần cứng (Arduino, ESP8266, ESP32-CAM) và phần mềm (xử lý trên máy tính) để điều khiển các thiết bị thông minh theo thời gian thực.
 </p>
 
 ---
 
 ## 🌟 Giới thiệu
 
-- **📌 Điểm danh tự động:** Sinh viên quét mã QR để điểm danh. Hệ thống xác định điểm danh đúng hạn hay trễ qua khoảng thời gian quét.
-- **💡 Thông báo trực quan:** Arduino sẽ điều khiển LED (xanh/đỏ) và còi để thông báo kết quả điểm danh. Nếu điểm danh trễ, hệ thống phát thông báo qua loa máy tính.
-- **📊 Quản lý dữ liệu:** Dữ liệu điểm danh được lưu trong MongoDB, có thể xem lịch sử và xuất ra file CSV.
-- **🖥️ Giao diện thân thiện:** Sử dụng Tkinter cho giao diện quản lý và Flask cho xử lý điểm danh qua web.
+- **📌 Đóng cửa khi có mưa:** Cảm biến mưa phát hiện nước, tín hiệu gửi đến Arduino để kích hoạt động cơ đóng cửa.
+- **💡 Mở cửa khi rò rỉ khí gas:** Cảm biến khí gas phát hiện rò rỉ, hệ thống tự động mở cửa để đảm bảo an toàn.
+- **📊 Còi báo động khi nhiệt độ cao:** Khi cảm biến phát hiện nhiệt độ vượt ngưỡng an toàn, còi báo động sẽ kích hoạt.
+- **🖥️ Mở cửa khi nhận diện chủ nhân:** ử dụng ESP32-CAM để nhận diện khuôn mặt, kết hợp với ESP8266 và máy tính trung gian để xử lý, giúp mở cửa tự động khi nhận diện đúng chủ nhân.
 
 ---
 ## 🏗️ HỆ THỐNG
@@ -39,14 +38,18 @@ HỆ THỐNG ĐIỂM DANH SINH VIÊN </h1>
 ## 📂 Cấu trúc dự án
 
 📦 Project  
-├── 📂 AttendanceDB  # Thư mục chứa cơ sở dữ liệu MongoDB backup  
-├── 📂 ThongBao  
-│   ├── ThongBao.ino  # Mã nguồn Arduino điều khiển LED (xanh/đỏ) và còi  
-├── 📂 templates  
-│   ├── checkin_success.html  # Giao diện HTML thông báo điểm danh thành công  
-├── chuongTrinh.py  # Chương trình chính khởi động LED service, Tkinter UI  
-├── Diemdanh.py  # Giao diện quản lý lịch sử điểm danh, xuất CSV, kết nối MongoDB  
-├── TaoQR.py  # Tạo mã QR, gửi email, quản lý sinh viên, Flask server xử lý điểm danh  
+├── 📂 detectWater   # Thư mục chứa code cảm biến nước
+│   ├── mucnuoc.ino   # Mã nguồn Arduino điều khiển micro servo
+├── 📂 Temperature - Gas  # Thư mục chứa code cảm biến khí gas và nhiệt độ
+│   ├── nhietdokhiga.ino   # Mã nguồn Arduino điều khiển LED (xanh/đỏ) và còi  
+├── 📂 FaceID
+│   ├── 📂 detectPeople  # Thư mục chứa code trung gian sử lý nhận diện chủ nhân 
+│   ├── ├── 📂 venv      # Thư mục của môi trường ảo 
+│   ├── ├── 📂 owner_images # Thư mục lưu trữ ảnh của người nhận diện
+│   ├── ├── detectPeople.py # Mã nguồn xử lý việc nhận diện người và truyền lệnh về cho Esp8266
+│   ├── ├── yolo11n.pt # File code YOLO
+│   ├── 📂 esp32Cam      # Thư mục chứa code cấu hình esp32cam 
+│   ├── 📂 Esp8266       # Thư mục chứa code cấu hình esp8266 và phần dùng để điều khiển micro sevor
 
 ---
 
@@ -64,9 +67,7 @@ HỆ THỐNG ĐIỂM DANH SINH VIÊN </h1>
 
 ### 🖥️ Phần mềm
 [![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)]()
-[![MongoDB](https://img.shields.io/badge/MongoDB-4.x-green?style=for-the-badge&logo=mongodb)]()
-[![Flask](https://img.shields.io/badge/Flask-Framework-black?style=for-the-badge&logo=flask)]()
-[![Tkinter](https://img.shields.io/badge/Tkinter-GUI-yellow?style=for-the-badge)]()
+[![Yolo](https://img.shields.io/badge/MongoDB-4.x-green?style=for-the-badge&logo=mongodb)]()
 [![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-blue?style=for-the-badge)]()
 
 </div>
@@ -85,8 +86,8 @@ HỆ THỐNG ĐIỂM DANH SINH VIÊN </h1>
 
 ### 📦 Các thư viện Python cần thiết
 Cài đặt các thư viện bằng lệnh:
-
-    pip install pillow qrcode pymongo tkcalendar flask pyserial gtts pygame
+   pip install ultralytics opencv-python numpy torch torchvision
+  python -m venv .venv
 ## 🧮 Bảng mạch
 
 ### 🔩 Kết nối phần cứng:
@@ -188,11 +189,11 @@ Cài đặt Python 3 nếu chưa có, sau đó cài đặt các thư viện cầ
 ## 🤝 Đóng góp
 Dự án được phát triển bởi 4 thành viên:
 
-| Họ và Tên       | Vai trò                  |
-|-----------------|--------------------------|
-| Nguyễn Nam Hưng | Phát triển toàn bộ mã nguồn, thiết kế cơ sở dữ liệu, kiểm thử, triển khai dự án và thực hiện video giới thiệu.|
-| Hoàng Mạnh Linh | Biên soạn tài liệu Overleaf, Poster, Powerpoint, thuyết trình, đề xuất cải tiến, và hỗ trợ bài tập lớn.|
-| Đào Đức Mạnh    | Thiết kế slide PowerPoint, hỗ trợ bài tập lớn.  |
-| Cao Văn Huy     | Hỗ trợ bài tập lớn       |
+| Họ và Tên            | Vai trò                  |
+|----------------------|--------------------------|
+| Nguyễn Ngọc Bảo Long | Phát triển toàn bộ mã nguồn, thiết kế cơ sở dữ liệu, kiểm thử, triển khai dự án và thực hiện video giới thiệu.|
+| Nguyễn Đức Minh      | Biên soạn tài liệu Overleaf, Poster, Powerpoint, thuyết trình, đề xuất cải tiến, và hỗ trợ bài tập lớn.|
+| Nguyễn Đình Khánh    | Thiết kế slide PowerPoint, hỗ trợ bài tập lớn.  |
+| Nguyễn Đức Đại       | Hỗ trợ bài tập lớn       |
 
-© 2025 NHÓM 1, CNTT16-03, TRƯỜNG ĐẠI HỌC ĐẠI NAM
+© 2025 NHÓM 5, CNTT16-02, TRƯỜNG ĐẠI HỌC ĐẠI NAM
