@@ -48,9 +48,10 @@
 │   │   ├── 📂 owner_images # Thư mục lưu trữ ảnh của người nhận diện  
 │   │   ├── detectPeople.py # Mã nguồn xử lý việc nhận diện người và truyền lệnh về cho ESP8266  
 │   │   ├── yolo11n.pt # File code modal được YOLO xây dựng sẵn 
-│   ├── 📂 esp32Cam      # Thư mục chứa code cấu hình ESP32-CAM  
-│   ├── 📂 Esp8266       # Thư mục chứa code cấu hình ESP8266 và phần dùng để điều khiển micro servo  
-
+│   ├── 📂 esp32Cam      # Thư mục chứa code ESP32-CAM  
+│   │   ├── esp32Cam.ino # Mã nguồn Arduino cấu hình esp32cam
+│   ├── 📂 Esp8266       # Thư mục chứa code ESP8266 
+│   │   ├── Esp8266.ino # Mã nguồn Arduino cấu hình esp8266 và phần dùng để điều khiển micro servo  
 
 ---
 
@@ -97,104 +98,48 @@
 
 ### 📦 Các thư viện Python cần thiết
 Cài đặt các thư viện bằng lệnh:
-     pip install ultralytics opencv-python numpy torch torchvision
+    pip install ultralytics opencv-python numpy torch torchvision
     python -m venv .venv
 ## 🧮 Bảng mạch
+<div align="center">
+ <img src="images/anh1.jpg" alt="System Architecture" width="800"/>
+ <img src="images/anh2.jpg" alt="System Architecture" width="800"/>
+ <img src="images/anh3.jpg" alt="System Architecture" width="800"/>
+ <img src="images/anh4.jpg" alt="System Architecture" width="800"/> 
+  <img src="images/anh5.jpg" alt="System Architecture" width="800"/> 
+</div>
 
 ### 🔩 Kết nối phần cứng:
 <img src="images/Ketnoiphancung.png" alt="System Architecture" width="800"/>
 
-### ⛓️‍💥 Hướng dẫn cắm dây
-| Thiết bị        | Chân trên thiết bị | Kết nối Arduino UNO | Ghi chú                         |
-|-----------------|-------------------|---------------------|---------------------------------|
-| Breadboard      | -                 | -                   | Dùng để kết nối linh kiện       |
-| Đèn LED xanh    | Anode (+), Cathode (-) | Anode → Digital Pin 9, Cathode → GND | Led thông báo khi sinh viên điểm danh đúng giờ|
-| Đèn LED đỏ      | Anode (+), Cathode (-) | Anode → Digital Pin 10, Cathode → GND | Led thông báo khi sinh viên điểm danh muộn|
-| Buzzer         | (+), (-)            | (+) → Digital Pin 11, (-) → GND |Còi thông báo khi sinh viên điểm danh muộn|
-| 7 dây điện      | -                 | -                   | Dùng để nối các linh kiện       |
-
 ## 🚀 Hướng dẫn cài đặt và chạy
 1️⃣ Chuẩn bị phần cứng
-- **Nạp mã Arduino**:
-
-    1. Mở file `ThongBao.ino` bằng Arduino IDE.
+- **Nạp mã Arduino với phần cảm biến nước**:
+    1. Mở file `mucnuoc.ino` bằng Arduino IDE.
     2. Kết nối board Arduino với máy tính.
     3. Nạp (upload) mã nguồn lên board.
-    4. Đảm bảo Arduino xuất hiện trên cổng COM5 (hoặc thay đổi trong `chuongTrinh.py` nếu cổng khác COM5).
-
-2️⃣ Cài đặt thư viện Python. 
-
+- **Nạp mã Arduino với phần cảm biến nhiệt độ và khí gas**:
+    1. Mở file `nhietdokhiga.ino` bằng Arduino IDE.
+    2. Kết nối board Arduino với máy tính.
+    3. Nạp (upload) mã nguồn lên board.
+- **Nạp mã Arduino với Esp8266 và Esp32Cam , code sử lý trung gian**:
+    1. Mở file `Esp8266.ino` bằng Arduino IDE.
+    2. Nhập wifi và password , chạy chương trình và lưu địa chỉ IP của Esp8266
+    3. Mở file `esp32Cam.ino` bằng Arduino IDE.
+    4. Nhập wifi và password , chạy chương trình và lưu địa chỉ IP của Esp32cam
+    5. Nhập địa chỉ IP của Esp8266 và Esp32cam vào file 
+2️⃣ Cài đặt thư viện Python.
 Cài đặt Python 3 nếu chưa có, sau đó cài đặt các thư viện cần thiết bằng pip.
-
-3️⃣ Cấu hình MongoDB
-- Cài đặt MongoDB nếu chưa có.
-- Khởi động MongoDB và đảm bảo đang hoạt động tại `mongodb://localhost:27017/`.
-- Khôi phục cơ sở dữ liệu từ bản sao lưu:
-
-        mongorestore --db AttendanceDB "đường-dẫn-đến-thư-mục-AttendanceDB"
-- Ví dụ:
-
-        mongorestore --db AttendanceDB "C:\Users\LENOVO\Documents\Demo2QR\AttendanceDB"
-📌 Lưu ý:
--	Tránh trùng lặp cơ sở dữ liệu: Trước khi thực hiện restore, hãy kiểm tra xem MongoDB đã có cơ sở dữ liệu tên AttendanceDB chưa. Nếu có, bạn có thể gặp lỗi hoặc dữ liệu cũ có thể bị ghi đè.
--	Đảm bảo MongoDB đang chạy: Nếu MongoDB chưa được khởi động, lệnh mongorestore sẽ không hoạt động.
-
-4️⃣ Chạy các chương trình
-
-Để đảm bảo hệ thống hoạt động đúng cách, bạn cần khởi chạy `chuongTrinh.py` trước, thay vì chạy từng file con riêng lẻ. File này cung cấp giao diện chính và bao gồm logic kết nối với Arduino board. Nếu chạy trực tiếp các file con, việc kết nối với Arduino sẽ không hoạt động.
-
-✅ Chạy ứng dụng chính (`chuongTrinh.py`):
-
-    python chuongTrinh.py
-- Ứng dụng sẽ:
-
-    - Khởi động **LED Service** tại `localhost:6000` để điều khiển LED và còi.
-    - Hiển thị giao diện chính (Tkinter) với các nút: **Tạo mã QR** và **Xem điểm danh**
-
-✅ Chạy ứng dụng quản lý điểm danh (`Diemdanh.py`):
-
-    python Diemdanh.py
-
-✅ Chạy ứng dụng tạo mã QR (`TaoQR.py`):
-
-    python TaoQR.py
-
-## 📖 Hướng dẫn sử dụng
-1️⃣ Điểm danh qua QR code
-
-- Sinh viên nhận email chứa mã QR.
-- Khi quét mã, trình duyệt sẽ gửi yêu cầu điểm danh đến Flask server.
-- Hệ thống kiểm tra tính hợp lệ và cập nhật vào MongoDB, đồng thời điều khiển Arduino:
-    - ✅ Điểm danh đúng hạn → LED xanh.
-    - ⏳ Điểm danh trễ → LED đỏ, còi, phát thông báo.
-    
-2️⃣ Quản lý sinh viên & mã QR
-- Qua giao diện của TaoQR.py, bạn có thể:
-    - Thêm, sửa, xóa thông tin sinh viên.
-    - Nhập/xuất danh sách sinh viên từ/đến file CSV.
-    - Tạo QR cho sinh viên theo lớp hoặc toàn bộ sinh viên.
-    - Xóa mã QR cũ một cách thủ công.
-
-3️⃣ Xem lịch sử điểm danh
-- Qua giao diện của Diemdanh.py, bạn có thể:
-    - Lọc danh sách điểm danh theo ngày, lớp, trạng thái.
-    - Xuất dữ liệu điểm danh ra file CSV.
-    - Hệ thống tự động cập nhật và chốt các phiên điểm danh.
-
+3️⃣ Chạy các chương trình
+python detectPeople.py
 ## ⚙️ Cấu hình & Ghi chú
 
-1. Cổng Arduino: 
-- Mặc định sử dụng COM5, có thể cập nhật trong `chuongTrinh.py`.
-2. Email gửi mã QR:
-- Trong `TaoQR.py`, cập nhật thông tin *sender_email* và *sender_password*.(sender email là địa chỉ email gửi, sender password là mật khẩu ứng dụng của email đó.)
-3. Thời gian hiệu lực mã QR: 
-- Mã QR có hiệu lực 100 phút kể từ thời điểm tạo.
-4. Môi trường mạng: 
-- Thiết bị quét QR cần kết nối cùng mạng với máy chủ.
+1. Môi trường mạng: 
+- esp32Cam, Esp8266 và máy tính cần kết nối cùng mạng với máy chủ.
 
 ## 📰 Poster
 <p align="center">
-  <img src="images/PosterNhom1.png" alt="System Architecture" width="800"/>
+  <img src="images/SuperDemo.png" alt="System Architecture" width="800"/>
 </p>
 
 ## 🤝 Đóng góp
@@ -203,7 +148,7 @@ Dự án được phát triển bởi 4 thành viên:
 | Họ và Tên            | Vai trò                  |
 |----------------------|--------------------------|
 | Nguyễn Ngọc Bảo Long | Phát triển toàn bộ mã nguồn, thiết kế cơ sở dữ liệu, kiểm thử, triển khai dự án và thực hiện video giới thiệu.|
-| Nguyễn Đức Minh      | Biên soạn tài liệu Overleaf, Poster, Powerpoint, thuyết trình, đề xuất cải tiến, và hỗ trợ bài tập lớn.|
+| Vũ Đức Minh          | Biên soạn tài liệu Overleaf, Poster, Powerpoint, thuyết trình, đề xuất cải tiến, và hỗ trợ bài tập lớn.|
 | Nguyễn Đình Khánh    | Thiết kế slide PowerPoint, hỗ trợ bài tập lớn.  |
 | Nguyễn Đức Đại       | Hỗ trợ bài tập lớn       |
 
