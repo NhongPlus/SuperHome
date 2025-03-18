@@ -113,25 +113,25 @@ Cài đặt các thư viện bằng lệnh:
 <img src="images/Ketnoiphancung.png" alt="System Architecture" width="800"/>
 
 ## 🚀 Hướng dẫn cài đặt và chạy
-1️⃣ Chuẩn bị phần cứng
-- **Nạp mã Arduino với phần cảm biến nước**:
-    1. Mở file `mucnuoc.ino` bằng Arduino IDE.
-    2. Kết nối board Arduino với máy tính.
-    3. Nạp (upload) mã nguồn lên board.
-- **Nạp mã Arduino với phần cảm biến nhiệt độ và khí gas**:
-    1. Mở file `nhietdokhiga.ino` bằng Arduino IDE.
-    2. Kết nối board Arduino với máy tính.
-    3. Nạp (upload) mã nguồn lên board.
-- **Nạp mã Arduino với Esp8266 và Esp32Cam , code sử lý trung gian**:
-    1. Mở file `Esp8266.ino` bằng Arduino IDE.
-    2. Nhập wifi và password , chạy chương trình và lưu địa chỉ IP của Esp8266
-    3. Mở file `esp32Cam.ino` bằng Arduino IDE.
-    4. Nhập wifi và password , chạy chương trình và lưu địa chỉ IP của Esp32cam
-    5. Nhập địa chỉ IP của Esp8266 và Esp32cam vào file 
-2️⃣ Cài đặt thư viện Python.
-Cài đặt Python 3 nếu chưa có, sau đó cài đặt các thư viện cần thiết bằng pip.
-3️⃣ Chạy các chương trình
-python detectPeople.py
+1️⃣ **Chuẩn bị phần cứng**  
+- **Nạp mã Arduino với phần cảm biến nước**:  
+  1. Mở file `mucnuoc.ino` bằng Arduino IDE.  
+  2. Kết nối board Arduino với máy tính.  
+  3. Nạp (upload) mã nguồn lên board.  
+- **Nạp mã Arduino với phần cảm biến nhiệt độ và khí gas**:  
+  1. Mở file `nhietdokhiga.ino` bằng Arduino IDE.  
+  2. Kết nối board Arduino với máy tính.  
+  3. Nạp (upload) mã nguồn lên board.  
+- **Nạp mã Arduino với Esp8266 và Esp32Cam, code xử lý trung gian**:  
+  1. Mở file `Esp8266.ino` bằng Arduino IDE.  
+  2. Nhập WiFi và password, chạy chương trình và lưu địa chỉ IP của Esp8266.  
+  3. Mở file `esp32Cam.ino` bằng Arduino IDE.  
+  4. Nhập WiFi và password, chạy chương trình và lưu địa chỉ IP của Esp32Cam.  
+  5. Nhập địa chỉ IP của Esp8266 và Esp32Cam vào file.  
+2️⃣ **Cài đặt thư viện Python**: Cài đặt Python 3 nếu chưa có, sau đó cài đặt các thư viện cần thiết bằng pip.  
+3️⃣ **Chạy các chương trình**: Chạy lệnh `python detectPeople.py`.  
+
+
 ## ⚙️ Cấu hình & Ghi chú
 
 1. Môi trường mạng: 
