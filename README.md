@@ -65,6 +65,11 @@
 [![LED](https://img.shields.io/badge/LED-green?style=for-the-badge)]()
 [![Buzzer](https://img.shields.io/badge/Buzzer-red?style=for-the-badge)]()
 [![WiFi](https://img.shields.io/badge/WiFi-2.4GHz-orange?style=for-the-badge)]()
+[![Micro Servo](https://img.shields.io/badge/Micro%20Servo-blue?style=for-the-badge)]()  
+[![Water Sensor](https://img.shields.io/badge/Water%20Sensor-blue?style=for-the-badge)]()  
+[![Gas Sensor](https://img.shields.io/badge/Gas%20Sensor-orange?style=for-the-badge)]()  
+[![Temperature Sensor](https://img.shields.io/badge/Temperature%20Sensor-red?style=for-the-badge)]()  
+
 
 ### 🖥️ Phần mềm
 [![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)]()
