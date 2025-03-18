@@ -1,4 +1,4 @@
-<h1 align="center">HỆ THỐNG NHÀ THÔNG MINH</h1>
+ <h1 align="center">HỆ THỐNG NHÀ THÔNG MINH</h1>
 
 <div align="center">
 
@@ -31,7 +31,7 @@
 ---
 ## 🏗️ HỆ THỐNG
 <p align="center">
-  <img src="images/Quytrinhdiemdanh.png" alt="System Architecture" width="800"/>
+  <img src="images/Quytrinh.png" alt="System Architecture" width="800"/>
 </p>
 
 ---
@@ -81,19 +81,24 @@
 ## 🛠️ Yêu cầu hệ thống
 
 ### 🔌 Phần cứng
-- **Arduino Uno** (hoặc board tương thích) với **LED (2 màu) và còi**.
-- **Cáp USB** để kết nối Arduino với máy tính.
-- ⚠️ **Lưu ý:** Mặc định mã nguồn Arduino trong `ThongBao.ino` sử dụng cổng `COM5`. Nếu Arduino của bạn sử dụng cổng khác, hãy thay đổi biến `SERIAL_PORT` trong `chuongTrinh.py`.
+- **Arduino Uno** (hoặc board tương thích)
+- **3 micro servo**.
+- **2 còi**.
+- **1 cảm biến nước**.
+- **1 Esp8266**.
+- **1 Esp32Cam**.
+- **1 cảm biến nhiệt độ**.
+- **Cáp USB , Cáp TypeC** để kết nối Arduino , Esp32Cam với máy tính.
+
 
 ### 💻 Phần mềm
 - **🐍 Python 3+**
-- **🍃 MongoDB** (kết nối mặc định: `mongodb://localhost:27017/`)
-- **⚡ Arduino IDE** để nạp file `ThongBao.ino` lên board Arduino.
+- **⚡ Arduino IDE** .
 
 ### 📦 Các thư viện Python cần thiết
 Cài đặt các thư viện bằng lệnh:
-   pip install ultralytics opencv-python numpy torch torchvision
-  python -m venv .venv
+     pip install ultralytics opencv-python numpy torch torchvision
+    python -m venv .venv
 ## 🧮 Bảng mạch
 
 ### 🔩 Kết nối phần cứng:
