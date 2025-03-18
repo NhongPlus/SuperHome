@@ -47,7 +47,7 @@
 │   │   ├── 📂 venv      # Thư mục của môi trường ảo  
 │   │   ├── 📂 owner_images # Thư mục lưu trữ ảnh của người nhận diện  
 │   │   ├── detectPeople.py # Mã nguồn xử lý việc nhận diện người và truyền lệnh về cho ESP8266  
-│   │   ├── yolo11n.pt # File code YOLO  
+│   │   ├── yolo11n.pt # File code modal được YOLO xây dựng sẵn 
 │   ├── 📂 esp32Cam      # Thư mục chứa code cấu hình ESP32-CAM  
 │   ├── 📂 Esp8266       # Thư mục chứa code cấu hình ESP8266 và phần dùng để điều khiển micro servo  
 
@@ -61,7 +61,7 @@
 <div align="center">
 
 ### 📡 Phần cứng
-[![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white)](https://www.arduino.cc/)
+[![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white)]()
 [![LED](https://img.shields.io/badge/LED-green?style=for-the-badge)]()
 [![Buzzer](https://img.shields.io/badge/Buzzer-red?style=for-the-badge)]()
 [![WiFi](https://img.shields.io/badge/WiFi-2.4GHz-orange?style=for-the-badge)]()
