@@ -38,18 +38,19 @@
 ## 📂 Cấu trúc dự án
 
 📦 Project  
-├── 📂 detectWater   # Thư mục chứa code cảm biến nước
-│   ├── mucnuoc.ino   # Mã nguồn Arduino điều khiển micro servo
-├── 📂 Temperature - Gas  # Thư mục chứa code cảm biến khí gas và nhiệt độ
+├── 📂 detectWater   # Thư mục chứa code cảm biến nước  
+│   ├── mucnuoc.ino   # Mã nguồn Arduino điều khiển micro servo  
+├── 📂 Temperature - Gas  # Thư mục chứa code cảm biến khí gas và nhiệt độ  
 │   ├── nhietdokhiga.ino   # Mã nguồn Arduino điều khiển LED (xanh/đỏ) và còi  
-├── 📂 FaceID
-│   ├── 📂 detectPeople  # Thư mục chứa code trung gian sử lý nhận diện chủ nhân 
-│   ├── ├── 📂 venv      # Thư mục của môi trường ảo 
-│   ├── ├── 📂 owner_images # Thư mục lưu trữ ảnh của người nhận diện
-│   ├── ├── detectPeople.py # Mã nguồn xử lý việc nhận diện người và truyền lệnh về cho Esp8266
-│   ├── ├── yolo11n.pt # File code YOLO
-│   ├── 📂 esp32Cam      # Thư mục chứa code cấu hình esp32cam 
-│   ├── 📂 Esp8266       # Thư mục chứa code cấu hình esp8266 và phần dùng để điều khiển micro sevor
+├── 📂 FaceID  
+│   ├── 📂 detectPeople  # Thư mục chứa code trung gian xử lý nhận diện chủ nhân  
+│   │   ├── 📂 venv      # Thư mục của môi trường ảo  
+│   │   ├── 📂 owner_images # Thư mục lưu trữ ảnh của người nhận diện  
+│   │   ├── detectPeople.py # Mã nguồn xử lý việc nhận diện người và truyền lệnh về cho ESP8266  
+│   │   ├── yolo11n.pt # File code YOLO  
+│   ├── 📂 esp32Cam      # Thư mục chứa code cấu hình ESP32-CAM  
+│   ├── 📂 Esp8266       # Thư mục chứa code cấu hình ESP8266 và phần dùng để điều khiển micro servo  
+
 
 ---
 
