@@ -26,7 +26,7 @@
 - **📌 Đóng cửa khi có mưa:** Cảm biến mưa phát hiện nước, tín hiệu gửi đến Arduino để kích hoạt động cơ đóng cửa.
 - **💡 Mở cửa khi rò rỉ khí gas:** Cảm biến khí gas phát hiện rò rỉ, hệ thống tự động mở cửa để đảm bảo an toàn.
 - **📊 Còi báo động khi nhiệt độ cao:** Khi cảm biến phát hiện nhiệt độ vượt ngưỡng an toàn, còi báo động sẽ kích hoạt.
-- **🖥️ Mở cửa khi nhận diện chủ nhân:** ử dụng ESP32-CAM để nhận diện khuôn mặt, kết hợp với ESP8266 và máy tính trung gian để xử lý, giúp mở cửa tự động khi nhận diện đúng chủ nhân.
+- **🖥️ Mở cửa khi nhận diện chủ nhân:** Sử dụng ESP32-CAM để nhận diện khuôn mặt, kết hợp với ESP8266 và máy tính trung gian để xử lý, giúp mở cửa tự động khi nhận diện đúng chủ nhân.
 
 ---
 ## 🏗️ HỆ THỐNG
