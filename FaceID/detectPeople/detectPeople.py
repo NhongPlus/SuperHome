@@ -85,7 +85,7 @@ try:
                     result = cv2.matchTemplate(detected_face, owner_face, cv2.TM_CCOEFF_NORMED)
                     similarity = result[0][0]  # Độ tương đồng (giá trị từ -1 đến 1)
 
-                    if similarity > 0.8:  # Ngưỡng nhận diện
+                    if similarity > 0.5:  # Ngưỡng nhận diện
                         is_owner_detected = True
                         last_detection_time = time.time()
                         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
