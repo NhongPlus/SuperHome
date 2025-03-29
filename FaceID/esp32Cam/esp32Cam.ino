@@ -5,9 +5,14 @@
 #include "camera_pins.h"
 
 #define LED_FLASH_PIN 4 
+  
+const char *ssid = "IoT Network";             // Tên WiFi
+const char *password = "aiotlab@123";         // Mật khẩu WiFi
 
-const char *ssid = "Ngu";
-const char *password = "khanhkhanh";
+IPAddress local_IP(192, 168, 162, 3);         // IP tĩnh cho ESP32-CAM
+IPAddress gateway(192, 168, 160, 1);          // Địa chỉ gateway (thường là router)
+IPAddress subnet(255, 255, 248, 0);           // Subnet mask
+IPAddress dns(8, 8, 8, 8);                    // DNS (Google DNS)
 
 void startCameraServer();
 void setupLedFlash(int pin);
@@ -46,19 +51,16 @@ void setup() {
   config.fb_count = 1;
 
   // if PSRAM IC present, init with UXGA resolution and higher JPEG quality
-  //                      for larger pre-allocated frame buffer.
   if (config.pixel_format == PIXFORMAT_JPEG) {
     if (psramFound()) {
       config.jpeg_quality = 10;
       config.fb_count = 2;
       config.grab_mode = CAMERA_GRAB_LATEST;
     } else {
-      // Limit the frame size when PSRAM is not available
       config.frame_size = FRAMESIZE_SVGA;
       config.fb_location = CAMERA_FB_IN_DRAM;
     }
   } else {
-    // Best option for face detection/recognition
     config.frame_size = FRAMESIZE_240X240;
 #if CONFIG_IDF_TARGET_ESP32S3
     config.fb_count = 2;
@@ -78,13 +80,11 @@ void setup() {
   }
 
   sensor_t *s = esp_camera_sensor_get();
-  // initial sensors are flipped vertically and colors are a bit saturated
   if (s->id.PID == OV3660_PID) {
     s->set_vflip(s, 1);        // flip it back
     s->set_brightness(s, 1);   // up the brightness just a bit
     s->set_saturation(s, -2);  // lower the saturation
   }
-  // drop down frame size for higher initial frame rate
   if (config.pixel_format == PIXFORMAT_JPEG) {
     s->set_framesize(s, FRAMESIZE_QVGA);
   }
@@ -98,10 +98,14 @@ void setup() {
   s->set_vflip(s, 1);
 #endif
 
-// Setup LED FLash if LED pin is defined in camera_pins.h
 #if defined(LED_GPIO_NUM)
   setupLedFlash(LED_GPIO_NUM);
 #endif
+
+  // Cấu hình IP tĩnh trước khi kết nối WiFi
+  if (!WiFi.config(local_IP, gateway, subnet, dns)) {
+    Serial.println("Cấu hình IP tĩnh thất bại!");
+  }
 
   WiFi.begin(ssid, password);
   WiFi.setSleep(false);

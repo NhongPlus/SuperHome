@@ -2,8 +2,14 @@
 #include <ESP8266WebServer.h>
 #include <Servo.h>
 
-const char *ssid = "Ngu";             // Tên WiFi
-const char *password = "khanhkhanh";  // Mật khẩu WiFi
+const char *ssid = "IoT Network";             // Tên WiFi
+const char *password = "aiotlab@123";         // Mật khẩu WiFi
+
+// Cấu hình IP tĩnh
+IPAddress local_IP(192, 168, 162, 4);         // IP tĩnh cho ESP8266
+IPAddress gateway(192, 168, 160, 1);          // Địa chỉ gateway (thường là router)
+IPAddress subnet(255, 255, 248, 0);               // Subnet mask
+IPAddress dns(8, 8, 8, 8);                    // DNS (Google DNS)
 
 ESP8266WebServer server(80);
 Servo myServo;
@@ -19,11 +25,9 @@ void handleServoControl() {
       Serial.println("Mở cửa!");
       delay(5000);       // Giữ cửa mở 5s
       myServo.write(0);  // Đóng cửa lại
-      Serial.println("Đóng cửa lại!");
     } else if (action == "close") {
       myServo.write(0);  // Đóng cửa ngay lập tức
       server.send(200, "text/plain", "Cửa ĐÃ ĐÓNG!");
-      Serial.println("Đóng cửa!");
     } else {
       server.send(400, "text/plain", "Sai lệnh!");
     }
@@ -36,6 +40,11 @@ void setup() {
   Serial.begin(115200);
   myServo.attach(SERVO_PIN);
   myServo.write(0);  // Ban đầu cửa đóng
+
+  // Cấu hình IP tĩnh
+  if (!WiFi.config(local_IP, gateway, subnet, dns)) {
+    Serial.println("Cấu hình IP tĩnh thất bại!");
+  }
 
   WiFi.begin(ssid, password);
   Serial.print("Đang kết nối WiFi...");

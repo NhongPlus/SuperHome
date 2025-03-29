@@ -11,8 +11,8 @@ from urllib.request import urlopen
 OWNER_IMAGE_DIR = "owner_images/"  # Lưu ảnh nhận diện chủ nhân
 
 # URL của ESP32-CAM và ESP8266
-capture_url = "http://172.20.10.7/capture"  # Địa chỉ lấy ảnh từ ESP32-CAM
-esp8266_door_url = "http://172.20.10.6/door"  # Địa chỉ điều khiển cửa từ ESP8266
+capture_url = "http://192.168.162.3/capture"  # Địa chỉ lấy ảnh từ ESP32-CAM
+esp8266_door_url = "http://192.168.162.4/door"  # Địa chỉ điều khiển cửa từ ESP8266
 
 # Biến trạng thái
 door_open = False  # Trạng thái cửa (mở/đóng)
